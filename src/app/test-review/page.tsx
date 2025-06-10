@@ -1,10 +1,19 @@
+export const dynamic = 'force-dynamic';
+
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function TestReviewPage() {
+  const [token, setToken] = useState<string | null>(null);
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setToken(localStorage.getItem('token'));
+    }
+  }, []);
 
   const testCreateUser = async () => {
     setLoading(true);
@@ -66,12 +75,12 @@ export default function TestReviewPage() {
   const testRealReview = async () => {
     setLoading(true);
     try {
-      const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+      const currentToken = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
       const response = await fetch('/api/reviews', {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'Authorization': `Bearer ${currentToken}`
         },
         body: JSON.stringify({ 
           accountId: '684b8e5c123456789abcdef1',
@@ -216,7 +225,7 @@ export default function TestReviewPage() {
         <div className="mt-8 bg-gray-800 rounded-lg p-6">
           <h2 className="text-xl font-bold text-white mb-4">Debug Bilgileri:</h2>
           <div className="text-gray-300 space-y-2">
-            <p><strong>Token:</strong> {typeof window !== 'undefined' && localStorage.getItem('token') ? 'Mevcut' : 'Yok'}</p>
+            <p><strong>Token:</strong> {token ? 'Mevcut' : 'Yok'}</p>
             <p><strong>URL:</strong> {typeof window !== 'undefined' ? window.location.origin : ''}</p>
             <p><strong>User Agent:</strong> {typeof window !== 'undefined' ? navigator.userAgent : ''}</p>
           </div>
