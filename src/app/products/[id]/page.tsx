@@ -126,7 +126,7 @@ export default function ProductDetailPage() {
     setIsPurchasing(true);
     try {
       // Kullanıcı giriş kontrolü
-      const token = localStorage.getItem('token');
+      const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
       if (!token) {
         router.push('/login');
         return;

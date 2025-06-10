@@ -265,7 +265,7 @@ export default function OrdersPage() {
     console.log('handleSubmitReview: Loading başlatıldı');
     
     try {
-      const token = localStorage.getItem('token');
+      const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
       console.log('handleSubmitReview: Token kontrol:', token ? 'Token var' : 'Token yok');
       
       if (!token) {

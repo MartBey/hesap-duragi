@@ -62,7 +62,7 @@ export default function AdminReviewsPage() {
 
       const response = await fetch(`/api/admin/reviews?${params}`, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${typeof window !== 'undefined' ? localStorage.getItem('token') : null}`
         }
       });
 
@@ -89,7 +89,7 @@ export default function AdminReviewsPage() {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${typeof window !== 'undefined' ? localStorage.getItem('token') : null}`
         },
         body: JSON.stringify({ reviewId, isApproved })
       });
@@ -112,7 +112,7 @@ export default function AdminReviewsPage() {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${typeof window !== 'undefined' ? localStorage.getItem('token') : null}`
         },
         body: JSON.stringify({ reviewId })
       });

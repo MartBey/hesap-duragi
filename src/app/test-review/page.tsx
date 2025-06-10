@@ -66,7 +66,7 @@ export default function TestReviewPage() {
   const testRealReview = async () => {
     setLoading(true);
     try {
-      const token = localStorage.getItem('token');
+      const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
       const response = await fetch('/api/reviews', {
         method: 'POST',
         headers: { 
@@ -216,9 +216,9 @@ export default function TestReviewPage() {
         <div className="mt-8 bg-gray-800 rounded-lg p-6">
           <h2 className="text-xl font-bold text-white mb-4">Debug Bilgileri:</h2>
           <div className="text-gray-300 space-y-2">
-            <p><strong>Token:</strong> {localStorage.getItem('token') ? 'Mevcut' : 'Yok'}</p>
-            <p><strong>URL:</strong> {window.location.origin}</p>
-            <p><strong>User Agent:</strong> {navigator.userAgent}</p>
+            <p><strong>Token:</strong> {typeof window !== 'undefined' && localStorage.getItem('token') ? 'Mevcut' : 'Yok'}</p>
+            <p><strong>URL:</strong> {typeof window !== 'undefined' ? window.location.origin : ''}</p>
+            <p><strong>User Agent:</strong> {typeof window !== 'undefined' ? navigator.userAgent : ''}</p>
           </div>
         </div>
       </div>
