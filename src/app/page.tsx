@@ -739,7 +739,7 @@ export default function Home() {
               Güvenilir Dijital Hesap Mağazası - Oyun Hesabı Satın Al
             </h2>
                           <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-                HesapDurağı'nda güvenilir dijital hesap alışverişi yapın! LOL hesap satın al, Valorant hesap satın al, 
+                HesapDurağı&apos;nda güvenilir dijital hesap alışverişi yapın! LOL hesap satın al, Valorant hesap satın al, 
                 PUBG Mobile UC satın al ve daha fazlası. Instagram takipçi satın al, Netflix hesap satın al gibi 
                 dijital ürünler için güvenilir dijital ürün mağazanız.
               </p>
@@ -785,7 +785,7 @@ export default function Home() {
 
           <div className="bg-gradient-to-r from-orange-500/10 to-orange-600/10 rounded-lg p-8 border border-orange-500/30">
             <h3 className="text-2xl font-bold text-white mb-4 text-center">
-              Neden HesapDurağı'nı Tercih Etmelisiniz?
+              Neden HesapDurağı&apos;nı Tercih Etmelisiniz?
             </h3>
             <div className="grid md:grid-cols-2 gap-6">
               <div>

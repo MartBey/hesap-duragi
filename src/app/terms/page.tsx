@@ -50,7 +50,7 @@ export default function TermsPage() {
               <h2 className="text-2xl font-bold text-white mb-4">1. Genel Hükümler</h2>
               <div className="text-gray-300 space-y-4">
                 <p>
-                  Bu kullanım şartları ("Şartlar"), HesapDurağı platformu ("Platform", "Site", "Hizmet") 
+                  Bu kullanım şartları (&quot;Şartlar&quot;), HesapDurağı platformu (&quot;Platform&quot;, &quot;Site&quot;, &quot;Hizmet&quot;) 
                   ile sizin aranızdaki yasal sözleşmeyi oluşturur. Platformu kullanarak bu şartları 
                   kabul etmiş sayılırsınız.
                 </p>
@@ -156,7 +156,7 @@ export default function TermsPage() {
               <h2 className="text-2xl font-bold text-white mb-4">7. Sorumluluk Sınırlaması</h2>
               <div className="text-gray-300 space-y-4">
                 <p>
-                  HesapDurağı'nın sorumluluğu:
+                  HesapDurağı&apos;nın sorumluluğu:
                 </p>
                 <ul className="list-disc list-inside space-y-2 ml-4">
                   <li>Satılan hesapların orijinalliği ile sınırlıdır</li>

@@ -145,7 +145,7 @@ export default function TestReviewPage() {
             disabled={loading}
             className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg disabled:opacity-50 font-bold"
           >
-            🗑️ Review'ları Temizle & Index Düzelt
+            🗑️ Review&apos;ları Temizle & Index Düzelt
           </button>
           
           <button
@@ -177,7 +177,7 @@ export default function TestReviewPage() {
             disabled={loading}
             className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg disabled:opacity-50"
           >
-            Review'ları Listele
+            Review&apos;ları Listele
           </button>
           
           <button
@@ -193,7 +193,7 @@ export default function TestReviewPage() {
             disabled={loading}
             className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg disabled:opacity-50 font-bold"
           >
-            ⭐ Rating'leri Güncelle
+            ⭐ Rating&apos;leri Güncelle
           </button>
         </div>
 

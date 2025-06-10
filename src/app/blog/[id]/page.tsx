@@ -120,7 +120,7 @@ export default function BlogDetailPage() {
               className="inline-flex items-center px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors"
             >
               <ArrowLeftIcon className="h-5 w-5 mr-2" />
-              Blog'a Dön
+              Blog&apos;a Dön
             </Link>
           </div>
         </div>
@@ -141,7 +141,7 @@ export default function BlogDetailPage() {
           className="inline-flex items-center text-orange-400 hover:text-orange-300 mb-8 transition-colors"
         >
           <ArrowLeftIcon className="h-5 w-5 mr-2" />
-          Blog'a Dön
+          Blog&apos;a Dön
         </Link>
 
         {/* Featured Image */}

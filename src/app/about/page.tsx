@@ -70,7 +70,7 @@ export default function AboutPage() {
                 Hakkımızda
               </h1>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Türkiye'nin en güvenilir oyun hesabı satış platformu olarak, 
+                Türkiye&apos;nin en güvenilir oyun hesabı satış platformu olarak, 
                 oyuncuların ihtiyaçlarını karşılamak için buradayız.
               </p>
             </div>
