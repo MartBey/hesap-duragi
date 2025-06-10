@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "name": "Ahmet K.",
+    "avatar": "👨‍💼",
+    "rating": 5,
+    "comment": "PUBG Mobile hesabımı çok hızlı teslim aldım. Güvenilir ve kaliteli hizmet!",
+    "game": "PUBG Mobile 660 UC",
+    "date": "3.6.2025",
+    "verified": true
+  },
+  {
+    "id": 2,
+    "name": "Zeynep M.",
+    "avatar": "👩‍💻",
+    "rating": 5,
+    "comment": "Legend Online hesabı tam istediğim gibiydi. Hızlı teslimat ve güvenli ödeme.",
+    "game": "Legend Online 500+150 Bonus Elmas",
+    "date": "3.6.2025",
+    "verified": true
+  },
+  {
+    "id": 3,
+    "name": "Mehmet Y.",
+    "avatar": "👨‍🎮",
+    "rating": 5,
+    "comment": "Metin2 hesabını çok beğendim. Hızlı teslimat ve kaliteli hizmet için teşekkürler!",
+    "game": "Metin2 450 Ejder Parası",
+    "date": "3.6.2025",
+    "verified": true
+  },
+  {
+    "id": 4,
+    "name": "Ayşe T.",
+    "avatar": "👩‍🦰",
+    "rating": 5,
+    "comment": "Valorant hesabı mükemmeldi. Çok iyi haritalar ve güvenli alışveriş deneyimi.",
+    "game": "Valorant Premium Hesap",
+    "date": "3.6.2025",
+    "verified": true
+  },
+  {
+    "id": 5,
+    "name": "Can S.",
+    "avatar": "👨‍🚀",
+    "rating": 5,
+    "comment": "CS:GO hesabı harika! Hızlı teslimat ve müşteri hizmetleri çok başarılı.",
+    "game": "CS:GO Prime Hesap",
+    "date": "3.6.2025",
+    "verified": true
+  }
+]

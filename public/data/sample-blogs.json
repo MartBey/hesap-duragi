@@ -1,0 +1,80 @@
+[
+  {
+    "_id": "blog1",
+    "title": "Valorant Yeni Sezon Rehberi",
+    "content": "<p>Valorant yeni sezonunda gelen yenilikler ve ipuçları. Rank atlamak için en etkili stratejiler ve ajan seçimleri.</p><p>Bu rehberde Valorant yeni sezonunda başarılı olmak için bilmeniz gereken her şeyi bulacaksınız. Yeni haritalar, ajan güncellemeleri ve meta değişiklikleri hakkında detaylı bilgiler.</p><p>Rank atlamak için en önemli faktörler:</p><ul><li>Takım oyunu ve iletişim</li><li>Aim antrenmanı</li><li>Harita bilgisi</li><li>Ekonomi yönetimi</li></ul>",
+    "excerpt": "Valorant yeni sezonunda rank atlamak için en etkili stratejiler ve ipuçları.",
+    "author": "HesapDurağı Editörü",
+    "publishDate": "2024-12-20T10:00:00.000Z",
+    "status": "published",
+    "tags": ["valorant", "fps", "rehber", "strateji"],
+    "views": 1250,
+    "comments": 23,
+    "slug": "valorant-yeni-sezon-rehberi"
+  },
+  {
+    "_id": "blog2",
+    "title": "CS:GO'dan CS2'ye Geçiş Rehberi",
+    "content": "<p>Counter-Strike 2 ile gelen yenilikler ve CS:GO'dan geçiş sürecinde bilmeniz gerekenler.</p><p>CS2'de değişen mekanikler, yeni grafikler ve oynanış farklılıkları hakkında kapsamlı rehber.</p><p>Önemli değişiklikler:</p><ul><li>Yeni grafik motoru</li><li>Geliştirilmiş fizik sistemi</li><li>Güncellenmiş haritalar</li><li>Yeni ses sistemi</li></ul>",
+    "excerpt": "Counter-Strike 2 ile gelen yenilikler ve geçiş sürecinde bilmeniz gerekenler.",
+    "author": "Pro Gamer",
+    "publishDate": "2024-12-19T14:30:00.000Z",
+    "status": "published",
+    "tags": ["cs2", "counter-strike", "fps", "rehber"],
+    "views": 890,
+    "comments": 15,
+    "slug": "csgo-cs2-gecis-rehberi"
+  },
+  {
+    "_id": "blog3",
+    "title": "League of Legends Sezon 14 Meta Analizi",
+    "content": "<p>League of Legends Sezon 14'te öne çıkan şampiyonlar ve meta değişiklikleri.</p><p>Bu sezonun en güçlü şampiyonları, ban edilmesi gereken karakterler ve takım kompozisyonları hakkında detaylı analiz.</p><p>Meta şampiyonlar:</p><ul><li>Top Lane: Aatrox, Garen, Darius</li><li>Jungle: Graves, Kha'Zix, Evelynn</li><li>Mid Lane: Yasuo, Zed, Ahri</li><li>ADC: Jinx, Caitlyn, Ezreal</li><li>Support: Thresh, Blitzcrank, Lulu</li></ul>",
+    "excerpt": "League of Legends Sezon 14'te öne çıkan şampiyonlar ve meta değişiklikleri.",
+    "author": "LoL Uzmanı",
+    "publishDate": "2024-12-18T16:45:00.000Z",
+    "status": "published",
+    "tags": ["lol", "league-of-legends", "moba", "meta"],
+    "views": 2100,
+    "comments": 45,
+    "slug": "lol-sezon-14-meta-analizi"
+  },
+  {
+    "_id": "blog4",
+    "title": "PUBG Mobile Yeni Güncelleme İncelemesi",
+    "content": "<p>PUBG Mobile'ın son güncellemesi ile gelen yeni özellikler ve iyileştirmeler.</p><p>Yeni harita, silahlar, araçlar ve oyun modları hakkında detaylı inceleme.</p><p>Güncelleme özellikleri:</p><ul><li>Yeni Livik 2.0 haritası</li><li>Geliştirilmiş grafik kalitesi</li><li>Yeni silah: M249</li><li>Metro Royale modu güncellemesi</li></ul>",
+    "excerpt": "PUBG Mobile'ın son güncellemesi ile gelen yeni özellikler ve iyileştirmeler.",
+    "author": "Mobile Gaming",
+    "publishDate": "2024-12-17T12:20:00.000Z",
+    "status": "published",
+    "tags": ["pubg-mobile", "battle-royale", "mobile", "güncelleme"],
+    "views": 1680,
+    "comments": 32,
+    "slug": "pubg-mobile-yeni-guncelleme"
+  },
+  {
+    "_id": "blog5",
+    "title": "Oyun Hesabı Güvenliği İpuçları",
+    "content": "<p>Oyun hesaplarınızı güvende tutmak için önemli güvenlik ipuçları ve öneriler.</p><p>İki faktörlü doğrulama, güçlü şifre oluşturma ve phishing saldırılarından korunma yöntemleri.</p><p>Güvenlik önerileri:</p><ul><li>İki faktörlü doğrulama kullanın</li><li>Güçlü ve benzersiz şifreler oluşturun</li><li>Şüpheli linklere tıklamayın</li><li>Hesap bilgilerinizi kimseyle paylaşmayın</li></ul>",
+    "excerpt": "Oyun hesaplarınızı güvende tutmak için önemli güvenlik ipuçları.",
+    "author": "Güvenlik Uzmanı",
+    "publishDate": "2024-12-16T09:15:00.000Z",
+    "status": "published",
+    "tags": ["güvenlik", "hesap-korunması", "ipuçları"],
+    "views": 950,
+    "comments": 18,
+    "slug": "oyun-hesabi-guvenlik-ipuclari"
+  },
+  {
+    "_id": "blog6",
+    "title": "E-Spor Dünyasından Haberler",
+    "content": "<p>E-spor dünyasından son haberler ve turnuva sonuçları.</p><p>Büyük turnuvalar, takım transferleri ve oyuncu performansları hakkında güncel bilgiler.</p><p>Son gelişmeler:</p><ul><li>Worlds 2024 şampiyonu belli oldu</li><li>Valorant Champions Tour devam ediyor</li><li>CS2 Major turnuvası yaklaşıyor</li><li>Yeni e-spor ligleri kuruldu</li></ul>",
+    "excerpt": "E-spor dünyasından son haberler ve turnuva sonuçları.",
+    "author": "E-Spor Editörü",
+    "publishDate": "2024-12-15T18:00:00.000Z",
+    "status": "published",
+    "tags": ["e-spor", "turnuva", "haberler"],
+    "views": 1420,
+    "comments": 28,
+    "slug": "e-spor-dunyasindan-haberler"
+  }
+] 
