@@ -9,7 +9,8 @@ import {
   StarIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-  ShoppingCartIcon
+  ShoppingCartIcon,
+  EyeIcon
 } from '@heroicons/react/24/outline';
 import { useCart } from '@/contexts/CartContext';
 import CartIcon from '@/components/CartIcon';
@@ -36,6 +37,8 @@ interface Account {
   stock: number;
   discountPercentage: number;
   isOnSale: boolean;
+  isFeatured: boolean;
+  isWeeklyDeal: boolean;
 }
 
 interface Category {
@@ -112,7 +115,7 @@ export default function ProductsPage() {
       if (data.success) {
         setAccounts(data.data.accounts);
         setTotalPages(data.data.totalPages);
-        setTotalAccounts(data.data.totalAccounts);
+        setTotalAccounts(typeof data.data.totalAccounts === 'number' ? data.data.totalAccounts : 0);
       }
     } catch (error) {
       console.error('Error fetching accounts:', error);
@@ -173,7 +176,7 @@ export default function ProductsPage() {
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-white mb-2">Tüm Ürünler</h1>
             <p className="text-gray-400">
-              {totalAccounts > 0 ? `${totalAccounts} hesap bulundu` : 'Hesap bulunamadı'}
+              {`${totalAccounts || 0} hesap bulundu`}
             </p>
           </div>
 
@@ -312,9 +315,39 @@ export default function ProductsPage() {
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
                 {accounts.map((account) => (
-                  <div key={account._id} className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg p-6 border border-orange-500/20 hover:border-orange-500/40 transition-all duration-300 hover:scale-105">
+                  <div
+                    key={account._id}
+                    className={
+                      `rounded-lg p-6 transition-all duration-300 hover:scale-105 ` +
+                      (account.isWeeklyDeal
+                        ? 'bg-gradient-to-br from-orange-500/80 to-yellow-400/80 border-2 border-orange-500 shadow-lg animate-pulse'
+                        : 'bg-gradient-to-br from-gray-800 to-gray-900 border border-orange-500/20 hover:border-orange-500/40')
+                    }
+                  >
+                    {/* Haftanın Fırsatları Rozeti */}
+                    {account.isWeeklyDeal && (
+                      <div className="absolute top-2 left-2 z-20">
+                        <span className="bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1 shadow-md animate-pulse">
+                          <span className="text-sm">🔥</span> Haftanın Fırsatı
+                        </span>
+                      </div>
+                    )}
                     <div className="mb-4">
                       <div className="bg-gray-700 rounded-lg h-48 flex items-center justify-center mb-4 relative overflow-hidden">
+                        {/* ÖNE ÇIKAN rozeti */}
+                        {account.isFeatured && (
+                          <div className="absolute top-2 left-2 z-10">
+                            <span className="bg-yellow-400 text-black text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1 shadow-md">
+                              <span className="text-sm">★</span> ÖNE ÇIKAN
+                            </span>
+                          </div>
+                        )}
+                        {/* Mevcut etiketi */}
+                        {account.status === 'available' && (
+                          <span className="absolute top-2 right-2 bg-green-600 text-white text-xs font-bold px-2 py-1 rounded-full z-20 shadow-md">
+                            Mevcut
+                          </span>
+                        )}
                         {account.images && account.images.length > 0 ? (
                           <img 
                             src={account.images[0]} 
@@ -324,7 +357,8 @@ export default function ProductsPage() {
                         ) : (
                           <span className="text-6xl">{account.emoji || '🎮'}</span>
                         )}
-                        <div className="absolute top-2 right-2">
+                        {/* Kategori etiketi sağ alt köşede */}
+                        <div className="absolute bottom-2 right-2">
                           <span className="px-2 py-1 bg-orange-500 text-white text-xs rounded-full font-medium">
                             {account.category}
                           </span>
@@ -395,19 +429,21 @@ export default function ProductsPage() {
                     </div>
                     
                     <div className="flex space-x-2">
-                      <Link 
-                        href={`/products/${account._id}`}
-                        className="flex-1 bg-gray-700 text-white py-2 rounded-lg hover:bg-gray-600 transition-colors font-medium text-sm text-center"
-                      >
-                        Detayları Gör
-                      </Link>
                       <button
                         onClick={() => handleAddToCart(account)}
-                        className="flex items-center justify-center px-3 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors"
+                        className="flex-1 flex items-center justify-center px-3 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors"
                         title="Sepete Ekle"
                       >
-                        <ShoppingCartIcon className="h-4 w-4" />
+                        <ShoppingCartIcon className="h-4 w-4 mr-2" />
+                        <span>Sepete Ekle</span>
                       </button>
+                      <Link 
+                        href={`/products/${account._id}`}
+                        className="flex items-center justify-center px-3 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors"
+                        title="Detayları Gör"
+                      >
+                        <EyeIcon className="h-4 w-4" />
+                      </Link>
                     </div>
                   </div>
                 ))}
@@ -487,10 +523,9 @@ export default function ProductsPage() {
             </div>
           )}
         </div>
-        
         {/* Footer */}
         <Footer />
       </div>
     </div>
   );
-} 
+}

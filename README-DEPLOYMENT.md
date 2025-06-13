@@ -70,7 +70,7 @@ nano .env.production
 NODE_ENV=production
 MONGODB_URI=mongodb://admin:GÜÇLÜ_ŞİFRE@mongo:27017/hesapduragi?authSource=admin
 NEXTAUTH_SECRET=ÇOKGÜÇLÜBIR_SECRET_KEY_BURAYA
-NEXTAUTH_URL=https://your-domain.com
+NEXTAUTH_URL=https://hesapduragi.com
 JWT_SECRET=BAŞKA_BİR_GÜÇLÜ_SECRET
 ```
 

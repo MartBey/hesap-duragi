@@ -90,201 +90,130 @@ export default function Navbar() {
     return (
       <nav className="sticky top-8 md:top-10 z-40 bg-gray-900 border-b border-gray-800 backdrop-blur-sm bg-gray-900/95 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center h-16 md:h-20">
+          <div className="flex items-center h-16 md:h-20 relative">
             {/* Logo - Sol taraf */}
-            <div className="flex-1 flex items-center">
-              <Link href="/" className="flex items-center space-x-3">
-                <img 
-                  src="/images/logo.png" 
-                  alt="HesapDurağı Logo" 
-                  className="h-8 md:h-12 w-auto"
+            <div className="flex-shrink-0 max-w-[340px] w-full md:w-auto">
+              <Link
+                href="/"
+                className="flex items-center space-x-3 w-full justify-start md:w-auto md:justify-start pl-0"
+              >
+                <img
+                  src="/images/logo.png"
+                  alt="HesapDurağı Logo"
+                  className="h-8 md:h-12 w-auto md:max-w-none p-0 ml-0 md:mx-0 transition-all duration-300"
                 />
               </Link>
             </div>
             
             {/* Navigation Links - Orta (1/3) */}
-            <div className="flex-1 flex justify-center">
-                          <div className="hidden md:flex items-center space-x-0">
-              <Link
-                href="/haftanin-firsatlari"
-                className="gradient-text-animation hover:text-white transition-colors text-base font-bold flex items-center space-x-2 px-2 py-2 rounded-lg hover:bg-gray-800/50 whitespace-nowrap min-w-[130px] justify-center relative overflow-hidden group"
-              >
-                <FireIcon className="h-5 w-5 text-[#ff6600] animate-pulse" />
-                <span>Haftanın Fırsatları</span>
-              </Link>
-              <Link
-                href="/products"
-                className="text-gray-300 hover:text-white transition-colors text-base font-bold flex items-center space-x-2 px-2 py-2 rounded-lg hover:bg-gray-800/50 whitespace-nowrap min-w-[130px] justify-center"
-              >
-                <ShoppingBagIcon className="h-5 w-5" />
-                <span>Ürünler</span>
-              </Link>
-              <Link
-                href="/categories"
-                className="text-gray-300 hover:text-white transition-colors text-base font-bold flex items-center space-x-2 px-2 py-2 rounded-lg hover:bg-gray-800/50 whitespace-nowrap min-w-[130px] justify-center"
-              >
-                <TagIcon className="h-5 w-5" />
-                <span>Kategoriler</span>
-              </Link>
-              <Link
-                href="/help"
-                className="text-gray-300 hover:text-white transition-colors text-base font-bold flex items-center space-x-2 px-2 py-2 rounded-lg hover:bg-gray-800/50 whitespace-nowrap min-w-[130px] justify-center"
-              >
-                <QuestionMarkCircleIcon className="h-5 w-5" />
-                <span>Yardım</span>
-              </Link>
-            </div>
+            <div className="flex-1 flex justify-start md:justify-start mx-12 min-w-0">
+              <div className="hidden md:flex items-center space-x-2">
+                <Link
+                  href="/haftanin-firsatlari"
+                  className="gradient-text-animation hover:text-white transition-colors text-base font-bold flex items-center space-x-2 px-2 py-2 rounded-lg hover:bg-gray-800/50 whitespace-nowrap min-w-[90px] justify-center relative overflow-hidden group"
+                >
+                  <FireIcon className="h-5 w-5 text-[#ff6600] animate-pulse" />
+                  <span>Haftanın Fırsatları</span>
+                </Link>
+                <Link
+                  href="/products"
+                  className="text-gray-300 hover:text-white transition-colors text-base font-bold flex items-center space-x-2 px-2 py-2 rounded-lg hover:bg-gray-800/50 whitespace-nowrap min-w-[90px] justify-center"
+                >
+                  <ShoppingBagIcon className="h-5 w-5" />
+                  <span>Ürünler</span>
+                </Link>
+                <Link
+                  href="/categories"
+                  className="text-gray-300 hover:text-white transition-colors text-base font-bold flex items-center space-x-2 px-2 py-2 rounded-lg hover:bg-gray-800/50 whitespace-nowrap min-w-[90px] justify-center"
+                >
+                  <TagIcon className="h-5 w-5" />
+                  <span>Kategoriler</span>
+                </Link>
+                <Link
+                  href="/help"
+                  className="text-gray-300 hover:text-white transition-colors text-base font-bold flex items-center space-x-2 px-2 py-2 rounded-lg hover:bg-gray-800/50 whitespace-nowrap min-w-[90px] justify-center"
+                >
+                  <QuestionMarkCircleIcon className="h-5 w-5" />
+                  <span>Yardım</span>
+                </Link>
+              </div>
             </div>
             
             {/* User Actions - Sağ taraf */}
             <div className="flex justify-end items-center space-x-2 md:space-x-4">
               <div className="animate-pulse bg-gray-700 h-8 w-16 md:w-20 rounded"></div>
             </div>
+
+            {/* Mobile Menu Button */}
+            <div className="flex items-center md:hidden absolute right-4 top-1/2 -translate-y-1/2 z-20 gap-2">
+              <button
+                onClick={toggleMobileMenu}
+                className="text-gray-300 hover:text-white p-2 rounded-lg transition-all duration-200 hover:bg-gray-800/80 hover:shadow-lg hover:scale-110"
+              >
+                {isMobileMenuOpen ? (
+                  <XMarkIcon className="h-6 w-6" />
+                ) : (
+                  <Bars3Icon className="h-6 w-6" />
+                )}
+              </button>
+              {!user && (
+                <>
+                  <Link
+                    href="/login"
+                    className="flex items-center space-x-1 text-gray-300 hover:text-white px-3 h-8 rounded border border-gray-600 text-sm font-medium bg-black/30"
+                  >
+                    <UserIcon className="h-4 w-4" />
+                    <span>Giriş</span>
+                  </Link>
+                  <Link
+                    href="/register"
+                    className="flex items-center space-x-1 bg-orange-500 hover:bg-orange-600 text-white px-3 h-8 rounded text-sm font-medium"
+                  >
+                    <span>Kayıt</span>
+                  </Link>
+                </>
+              )}
+            </div>
           </div>
         </div>
         
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-gray-800 border-t border-gray-700">
-            <div className="px-4 py-4 space-y-2">
-              {/* Navigation Links */}
+          <div className="md:hidden bg-gray-800 border-t border-gray-700 transition-all duration-300 opacity-100 translate-y-0 animate-navbar-fade-in"
+            style={{animation: 'navbar-fade-in 0.3s'}}>
+            <div className="px-4 py-4 space-y-4">
               <Link
                 href="/haftanin-firsatlari"
-                className="flex items-center space-x-3 text-gray-300 hover:text-white hover:bg-gray-700 py-3 px-2 rounded-lg transition-colors"
+                className="flex items-center space-x-2 text-gray-300 hover:text-white py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                <FireIcon className="h-5 w-5 text-orange-500" />
-                <span className="font-medium">Haftanın Fırsatları</span>
+                <FireIcon className="h-5 w-5" />
+                <span>Haftanın Fırsatları</span>
               </Link>
               <Link
                 href="/products"
-                className="flex items-center space-x-3 text-gray-300 hover:text-white hover:bg-gray-700 py-3 px-2 rounded-lg transition-colors"
+                className="flex items-center space-x-2 text-gray-300 hover:text-white py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <ShoppingBagIcon className="h-5 w-5" />
-                <span className="font-medium">Ürünler</span>
+                <span>Ürünler</span>
               </Link>
               <Link
                 href="/categories"
-                className="flex items-center space-x-3 text-gray-300 hover:text-white hover:bg-gray-700 py-3 px-2 rounded-lg transition-colors"
+                className="flex items-center space-x-2 text-gray-300 hover:text-white py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <TagIcon className="h-5 w-5" />
-                <span className="font-medium">Kategoriler</span>
+                <span>Kategoriler</span>
               </Link>
               <Link
                 href="/help"
-                className="flex items-center space-x-3 text-gray-300 hover:text-white hover:bg-gray-700 py-3 px-2 rounded-lg transition-colors"
+                className="flex items-center space-x-2 text-gray-300 hover:text-white py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <QuestionMarkCircleIcon className="h-5 w-5" />
-                <span className="font-medium">Yardım</span>
+                <span>Yardım</span>
               </Link>
-              
-              {/* Cart Link for Mobile */}
-              <div className="sm:hidden border-t border-gray-700 pt-4 mt-4">
-                <Link
-                  href="/cart"
-                  className="flex items-center space-x-3 text-gray-300 hover:text-white hover:bg-gray-700 py-3 px-2 rounded-lg transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <ShoppingBagIcon className="h-5 w-5" />
-                  <span className="font-medium">Sepetim</span>
-                </Link>
-              </div>
-              
-              {/* User Actions for Mobile */}
-              <div className="border-t border-gray-700 pt-4 mt-4 space-y-2">
-                {user ? (
-                  <>
-                    {/* User Info */}
-                    <div className="px-2 py-2 bg-gray-700/50 rounded-lg">
-                      <p className="text-sm font-medium text-white">{user.name}</p>
-                      <p className="text-xs text-gray-400">{user.email}</p>
-                      <p className="text-xs text-orange-500 capitalize">
-                        {user.role === 'admin' ? 'Yönetici' : 'Kullanıcı'}
-                      </p>
-                    </div>
-                    
-                    {/* User Menu Items */}
-                    <Link
-                      href="/profile"
-                      className="flex items-center space-x-3 text-gray-300 hover:text-white hover:bg-gray-700 py-3 px-2 rounded-lg transition-colors"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      <UserIcon className="h-5 w-5" />
-                      <span className="font-medium">Profilim</span>
-                    </Link>
-                    
-                    <Link
-                      href="/orders"
-                      className="flex items-center space-x-3 text-gray-300 hover:text-white hover:bg-gray-700 py-3 px-2 rounded-lg transition-colors"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      <ShoppingBagIcon className="h-5 w-5" />
-                      <span className="font-medium">Siparişlerim</span>
-                    </Link>
-                    
-                    <Link
-                      href="/balance"
-                      className="flex items-center space-x-3 text-gray-300 hover:text-white hover:bg-gray-700 py-3 px-2 rounded-lg transition-colors"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      <CreditCardIcon className="h-5 w-5" />
-                      <span className="font-medium">Bakiyem</span>
-                    </Link>
-                    
-                    <Link
-                      href="/settings"
-                      className="flex items-center space-x-3 text-gray-300 hover:text-white hover:bg-gray-700 py-3 px-2 rounded-lg transition-colors"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      <CogIcon className="h-5 w-5" />
-                      <span className="font-medium">Ayarlar</span>
-                    </Link>
-
-                    {user.role === 'admin' && (
-                      <Link
-                        href="/admin"
-                        className="flex items-center space-x-3 text-blue-400 hover:text-blue-300 hover:bg-gray-700 py-3 px-2 rounded-lg transition-colors"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        <ShieldCheckIcon className="h-5 w-5" />
-                        <span className="font-medium">Admin Paneli</span>
-                      </Link>
-                    )}
-                    
-                    <button
-                      onClick={() => {
-                        handleLogout();
-                        setIsMobileMenuOpen(false);
-                      }}
-                      className="flex items-center space-x-3 text-red-400 hover:text-red-300 hover:bg-gray-700 py-3 px-2 rounded-lg transition-colors w-full text-left"
-                    >
-                      <ArrowRightOnRectangleIcon className="h-5 w-5" />
-                      <span className="font-medium">Çıkış Yap</span>
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <Link
-                      href="/login"
-                      className="flex items-center justify-center space-x-2 text-gray-300 hover:text-white hover:bg-gray-700 py-3 px-4 rounded-lg transition-colors border border-gray-600"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      <UserIcon className="h-5 w-5" />
-                      <span className="font-medium">Giriş Yap</span>
-                    </Link>
-                    <Link
-                      href="/register"
-                      className="flex items-center justify-center space-x-2 bg-orange-500 hover:bg-orange-600 text-white py-3 px-4 rounded-lg transition-colors font-medium"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      <span>Kayıt Ol</span>
-                    </Link>
-                  </>
-                )}
-              </div>
             </div>
           </div>
         )}
@@ -295,45 +224,48 @@ export default function Navbar() {
   return (
     <nav className="sticky top-8 md:top-10 z-40 bg-gray-900 border-b border-gray-800 backdrop-blur-sm bg-gray-900/95 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center h-16 md:h-20">
+        <div className="flex items-center h-16 md:h-20 relative">
           {/* Logo - Sol taraf */}
-          <div className="flex-1 flex items-center">
-            <Link href="/" className="flex items-center space-x-3">
-              <img 
-                src="/images/logo.png" 
-                alt="HesapDurağı Logo" 
-                className="h-8 md:h-12 w-auto"
+          <div className="flex-shrink-0 max-w-[340px] w-full md:w-auto">
+            <Link
+              href="/"
+              className="flex items-center space-x-3 w-full justify-start md:w-auto md:justify-start pl-0"
+            >
+              <img
+                src="/images/logo.png"
+                alt="HesapDurağı Logo"
+                className="h-8 md:h-12 w-auto md:max-w-none p-0 ml-0 md:mx-0 transition-all duration-300"
               />
             </Link>
           </div>
           
           {/* Navigation Links - Orta (1/3) */}
-          <div className="flex-1 flex justify-center">
-            <div className="hidden md:flex items-center space-x-0">
+          <div className="flex-1 flex justify-start md:justify-start mx-12 min-w-0">
+            <div className="hidden md:flex items-center space-x-2">
               <Link
                 href="/haftanin-firsatlari"
-                className="gradient-text-animation hover:text-white transition-colors text-base font-bold flex items-center space-x-2 px-2 py-2 rounded-lg hover:bg-gray-800/50 whitespace-nowrap min-w-[130px] justify-center relative overflow-hidden group"
+                className="gradient-text-animation hover:text-white transition-colors text-base font-bold flex items-center space-x-2 px-2 py-2 rounded-lg hover:bg-gray-800/50 whitespace-nowrap min-w-[90px] justify-center relative overflow-hidden group"
               >
                 <FireIcon className="h-5 w-5 text-[#ff6600] animate-pulse" />
                 <span>Haftanın Fırsatları</span>
               </Link>
               <Link
                 href="/products"
-                className="text-gray-300 hover:text-white transition-colors text-base font-bold flex items-center space-x-2 px-2 py-2 rounded-lg hover:bg-gray-800/50 whitespace-nowrap min-w-[130px] justify-center"
+                className="text-gray-300 hover:text-white transition-colors text-base font-bold flex items-center space-x-2 px-2 py-2 rounded-lg hover:bg-gray-800/50 whitespace-nowrap min-w-[90px] justify-center"
               >
                 <ShoppingBagIcon className="h-5 w-5" />
                 <span>Ürünler</span>
               </Link>
               <Link
                 href="/categories"
-                className="text-gray-300 hover:text-white transition-colors text-base font-bold flex items-center space-x-2 px-2 py-2 rounded-lg hover:bg-gray-800/50 whitespace-nowrap min-w-[130px] justify-center"
+                className="text-gray-300 hover:text-white transition-colors text-base font-bold flex items-center space-x-2 px-2 py-2 rounded-lg hover:bg-gray-800/50 whitespace-nowrap min-w-[90px] justify-center"
               >
                 <TagIcon className="h-5 w-5" />
                 <span>Kategoriler</span>
               </Link>
               <Link
                 href="/help"
-                className="text-gray-300 hover:text-white transition-colors text-base font-bold flex items-center space-x-2 px-2 py-2 rounded-lg hover:bg-gray-800/50 whitespace-nowrap min-w-[130px] justify-center"
+                className="text-gray-300 hover:text-white transition-colors text-base font-bold flex items-center space-x-2 px-2 py-2 rounded-lg hover:bg-gray-800/50 whitespace-nowrap min-w-[90px] justify-center"
               >
                 <QuestionMarkCircleIcon className="h-5 w-5" />
                 <span>Yardım</span>
@@ -348,18 +280,44 @@ export default function Navbar() {
             </div>
             
             {/* Mobile Menu Button */}
-            <button
-              onClick={toggleMobileMenu}
-              className="md:hidden text-gray-300 hover:text-white p-2 rounded-lg hover:bg-gray-800"
-            >
-              {isMobileMenuOpen ? (
-                <XMarkIcon className="h-6 w-6" />
-              ) : (
-                <Bars3Icon className="h-6 w-6" />
+            <div className="flex items-center md:hidden absolute right-4 top-1/2 -translate-y-1/2 z-20 gap-2">
+              <button
+                onClick={toggleMobileMenu}
+                className="text-gray-300 hover:text-white p-2 rounded-lg transition-all duration-200 hover:bg-gray-800/80 hover:shadow-lg hover:scale-110"
+              >
+                {isMobileMenuOpen ? (
+                  <XMarkIcon className="h-6 w-6" />
+                ) : (
+                  <Bars3Icon className="h-6 w-6" />
+                )}
+              </button>
+              {!user && (
+                <>
+                  <Link
+                    href="/login"
+                    className="flex items-center space-x-1 text-gray-300 hover:text-white px-3 h-8 rounded border border-gray-600 text-sm font-medium bg-black/30"
+                  >
+                    <UserIcon className="h-4 w-4" />
+                    <span>Giriş</span>
+                  </Link>
+                  <Link
+                    href="/register"
+                    className="flex items-center space-x-1 bg-orange-500 hover:bg-orange-600 text-white px-3 h-8 rounded text-sm font-medium"
+                  >
+                    <span>Kayıt</span>
+                  </Link>
+                </>
               )}
-            </button>
+            </div>
             
-            {user ? (
+            {isLoading ? (
+              <>
+                <div className="flex items-center justify-center space-x-2 animate-pulse">
+                  <div className="h-8 w-20 bg-gray-700 rounded" />
+                  <div className="h-8 w-20 bg-gray-700 rounded" />
+                </div>
+              </>
+            ) : user ? (
               <div className="relative" ref={dropdownRef}>
                 {/* User Menu Button */}
                 <button
@@ -506,7 +464,8 @@ export default function Navbar() {
         
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-gray-800 border-t border-gray-700">
+          <div className="md:hidden bg-gray-800 border-t border-gray-700 transition-all duration-300 opacity-100 translate-y-0 animate-navbar-fade-in"
+            style={{animation: 'navbar-fade-in 0.3s'}}>
             <div className="px-4 py-4 space-y-4">
               <Link
                 href="/haftanin-firsatlari"

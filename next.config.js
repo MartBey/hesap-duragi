@@ -20,7 +20,8 @@ const nextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     domains: [
       'localhost',
-      'your-domain.com', // Kendi domain'inizi buraya ekleyin
+      'hesapduragi.com',
+      'www.hesapduragi.com',
       'images.unsplash.com',
       'via.placeholder.com'
     ],
@@ -75,7 +76,7 @@ const nextConfig = {
   env: {
     JWT_SECRET: process.env.JWT_SECRET || 'your-super-secret-jwt-key-here-make-it-long-and-complex-123456789',
     MONGODB_URI: process.env.MONGODB_URI || 'mongodb+srv://duragihesap:7XJNTIss1Zo0Wq9N@hdurag.qet35hk.mongodb.net/hesapduragi?retryWrites=true&w=majority',
-    NEXTAUTH_URL: process.env.NEXTAUTH_URL || 'http://localhost:3000',
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL || 'https://hesapduragi.com',
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET || 'your-super-secret-nextauth-key-here-make-it-long-and-complex-123456789',
     CUSTOM_KEY: process.env.CUSTOM_KEY,
   },

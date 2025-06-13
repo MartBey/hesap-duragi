@@ -204,7 +204,6 @@ export async function GET(request: NextRequest) {
     if (accounts.length === 0) {
       console.log('Veritabanında hesap bulunamadı, mock data döndürülüyor');
       let filteredMockAccounts = [...mockAccounts];
-      
       // Filtreleri uygula
       if (category) {
         filteredMockAccounts = filteredMockAccounts.filter(acc => acc.category === category);
@@ -218,22 +217,18 @@ export async function GET(request: NextRequest) {
       if (maxPrice) {
         filteredMockAccounts = filteredMockAccounts.filter(acc => acc.price <= parseInt(maxPrice));
       }
-      
       // Pagination uygula
       const startIndex = (page - 1) * limit;
       const endIndex = startIndex + limit;
       const paginatedMockAccounts = filteredMockAccounts.slice(startIndex, endIndex);
-      
       return NextResponse.json({
         success: true,
         data: {
           accounts: paginatedMockAccounts,
-          pagination: {
-            total: filteredMockAccounts.length,
-            totalPages: Math.ceil(filteredMockAccounts.length / limit),
-            currentPage: page,
-            limit,
-          }
+          totalAccounts: filteredMockAccounts.length,
+          totalPages: Math.ceil(filteredMockAccounts.length / limit),
+          currentPage: page,
+          limit,
         }
       });
     }
@@ -242,12 +237,10 @@ export async function GET(request: NextRequest) {
       success: true,
       data: {
         accounts,
-        pagination: {
-          total: totalCount,
-          totalPages: Math.ceil(totalCount / limit),
-          currentPage: page,
-          limit,
-        }
+        totalAccounts: totalCount,
+        totalPages: Math.ceil(totalCount / limit),
+        currentPage: page,
+        limit,
       }
     });
 
@@ -259,21 +252,17 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const page = parseInt(searchParams.get('page') || '1');
     const limit = parseInt(searchParams.get('limit') || '12');
-    
     const startIndex = (page - 1) * limit;
     const endIndex = startIndex + limit;
     const paginatedMockAccounts = mockAccounts.slice(startIndex, endIndex);
-    
     return NextResponse.json({
       success: true,
       data: {
         accounts: paginatedMockAccounts,
-        pagination: {
-          total: mockAccounts.length,
-          totalPages: Math.ceil(mockAccounts.length / limit),
-          currentPage: page,
-          limit,
-        }
+        totalAccounts: mockAccounts.length,
+        totalPages: Math.ceil(mockAccounts.length / limit),
+        currentPage: page,
+        limit,
       }
     });
   }

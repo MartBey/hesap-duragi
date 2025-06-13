@@ -47,6 +47,9 @@ export const metadata: Metadata = {
     google: 'google-site-verification-code',
     yandex: 'yandex-verification-code',
   },
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export const viewport: Viewport = {
@@ -70,6 +73,7 @@ export default function RootLayout({
         
         {/* Bing Verification */}
         <meta name="msvalidate.01" content="your-bing-verification-code" />
+        <link rel="icon" href="/favicon.ico" />
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         <Providers>

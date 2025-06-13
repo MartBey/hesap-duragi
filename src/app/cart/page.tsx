@@ -38,6 +38,14 @@ export default function CartPage() {
 
   const handleCheckout = () => {
     if (state.items.length === 0) return;
+    // Kullanıcı giriş kontrolü
+    const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+    const userData = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
+    if (!token || !userData) {
+      alert('Ödeme yapabilmek için önce giriş yapmalısınız!');
+      router.push('/login');
+      return;
+    }
     router.push('/checkout');
   };
 

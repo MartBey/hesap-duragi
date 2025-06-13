@@ -172,13 +172,15 @@ const CategorySlider = ({ className = '' }: CategorySliderProps) => {
             }}
           >
             {infiniteCategories.map((category, index) => (
-                              <div
+              <div
                 key={`${category._id}-${index}`}
+                className="category-slider-item"
                 style={{
-                  width: '154px', // %30 daha küçük (220 * 0.7)
+                  width: '120px', // Daha küçük
                   flexShrink: 0,
                   textDecoration: 'none',
-                  color: 'inherit'
+                  color: 'inherit',
+                  marginRight: '12px', // Gap'i azalttık
                 }}
               >
                 <Link
@@ -356,4 +358,14 @@ const CategorySlider = ({ className = '' }: CategorySliderProps) => {
   );
 };
 
-export default CategorySlider; 
+export default CategorySlider;
+
+<style jsx global>{`
+  @media (max-width: 600px) {
+    .category-slider-item {
+      width: calc((100vw - 48px) / 4) !important; /* 4 kutu ve 3x12px gap */
+      min-width: 0 !important;
+      margin-right: 12px !important;
+    }
+  }
+`}</style> 

@@ -19,7 +19,8 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   StarIcon,
-  ShoppingCartIcon
+  ShoppingCartIcon,
+  EyeIcon
 } from "@heroicons/react/24/outline";
 import { useCart } from '@/contexts/CartContext';
 
@@ -43,6 +44,7 @@ interface Account {
   rating: number;
   reviews: number;
   stock: number;
+  isWeeklyDeal: boolean;
 }
 
 export default function Home() {
@@ -225,7 +227,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-4">
               <h3 className="text-3xl font-bold text-white mb-3">
-                🔥 İNDİRİMLİ ÜRÜNLER
+                🔥 İNDİRİMLİ ÜRÜNLER 🔥
               </h3>
               <p className="text-gray-400 text-lg">
                 Sınırlı süre özel indirim fırsatları
@@ -336,28 +338,52 @@ export default function Home() {
                   </div>
 
                   {/* Action Buttons - Fixed at Bottom */}
-                  <div className="flex space-x-1 mt-auto">
+                  <div className="flex space-x-2 mt-auto">
+                    {account.isOnSale && account.discountPercentage > 0 ? (
+                      <button
+                        onClick={() => handleAddToCart(account)}
+                        disabled={account.status !== 'available' || account.stock === 0}
+                        className="flex-1 flex items-center justify-center px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        title={account.stock === 0 ? 'Stokta Yok' : 'Sepete Ekle'}
+                      >
+                        <ShoppingCartIcon className="h-3 w-3 lg:h-4 lg:w-4 mr-2" />
+                        <span className="text-xs lg:text-sm">Sepete Ekle</span>
+                      </button>
+                    ) : account.isFeatured ? (
+                      <button
+                        onClick={() => handleAddToCart(account)}
+                        disabled={account.status !== 'available' || account.stock === 0}
+                        className="flex-1 flex items-center justify-center px-3 py-2 bg-yellow-500 text-black rounded-lg hover:bg-yellow-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        title={account.stock === 0 ? 'Stokta Yok' : 'Sepete Ekle'}
+                      >
+                        <ShoppingCartIcon className="h-3 w-3 lg:h-4 lg:w-4 mr-2" />
+                        <span className="text-xs lg:text-sm">Sepete Ekle</span>
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => handleAddToCart(account)}
+                        disabled={account.status !== 'available' || account.stock === 0}
+                        className="flex-1 flex items-center justify-center px-3 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        title={account.stock === 0 ? 'Stokta Yok' : 'Sepete Ekle'}
+                      >
+                        <ShoppingCartIcon className="h-3 w-3 lg:h-4 lg:w-4 mr-2" />
+                        <span className="text-xs lg:text-sm">Sepete Ekle</span>
+                      </button>
+                    )}
                     <Link 
                       href={`/products/${account._id}`}
-                      className="flex-1 bg-gray-700 text-white py-1.5 rounded-lg hover:bg-gray-600 transition-colors font-medium text-xs text-center"
+                      className="flex items-center justify-center px-3 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors"
+                      title="Detayları Gör"
                     >
-                      Detay
+                      <EyeIcon className="h-4 w-4" />
                     </Link>
-                    <button
-                      onClick={() => handleAddToCart(account)}
-                      disabled={account.status !== 'available' || account.stock === 0}
-                      className="flex items-center justify-center px-2 py-1.5 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                      title={account.stock === 0 ? "Stokta Yok" : "Sepete Ekle"}
-                    >
-                      <ShoppingCartIcon className="h-3 w-3" />
-                    </button>
                   </div>
                 </div>
               ))}
             </div>
 
             {/* View All Button */}
-            <div className="text-center mt-4">
+            <div className="text-center mt-10">
               <Link 
                 href="/products?sale=true"
                 className="inline-flex items-center px-8 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors font-semibold"
@@ -383,7 +409,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-4">
               <h3 className="text-3xl font-bold text-white mb-3">
-                ⭐ ÖNE ÇIKAN ÜRÜNLER
+                ⭐ ÖNE ÇIKAN ÜRÜNLER ⭐
               </h3>
               <p className="text-gray-400 text-lg">
                 Özel olarak seçilmiş en kaliteli hesaplar
@@ -396,11 +422,28 @@ export default function Home() {
                   key={account._id} 
                   className="bg-gradient-to-br from-yellow-800 to-gray-900 rounded-lg p-3 border border-yellow-500/30 hover:border-yellow-500/50 transition-all duration-300 hover:scale-105 group relative h-[380px] flex flex-col"
                 >
-                  {/* Featured Badge */}
-                  <div className="absolute -top-2 -right-2 z-10">
-                    <span className="bg-yellow-500 text-black text-xs font-bold px-2 py-1 rounded-full">
-                      ⭐ ÖNE ÇIKAN
-                    </span>
+                  {/* Tüm rozetler ve mevcut etiketi tek satırda */}
+                  <div className="absolute top-2 left-2 z-20 flex flex-row gap-1 flex-wrap">
+                    {account.isOnSale && account.discountPercentage > 0 && (
+                      <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                        %{account.discountPercentage} İNDİRİM
+                      </span>
+                    )}
+                    {account.isFeatured && (
+                      <span className="bg-yellow-400 text-black text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1 shadow-md">
+                        <span className="text-sm">★</span> ÖNE ÇIKAN
+                      </span>
+                    )}
+                    {account.isWeeklyDeal && (
+                      <span className="bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1 shadow-md animate-pulse">
+                        <span className="text-sm">🔥</span> Haftanın Fırsatı
+                      </span>
+                    )}
+                    {account.status === 'available' && (
+                      <span className="bg-green-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">
+                        Mevcut
+                      </span>
+                    )}
                   </div>
 
                   {/* Product Image - Fixed Height */}
@@ -413,26 +456,6 @@ export default function Home() {
                       />
                     ) : (
                       <span className="text-4xl">{account.emoji || '🎮'}</span>
-                    )}
-                    
-                    {/* Status Badge */}
-                    <div className="absolute top-1 right-1">
-                      <span className={`px-1.5 py-0.5 text-xs rounded-full font-medium ${
-                        account.status === 'available' 
-                          ? 'bg-green-500/20 text-green-400' 
-                          : 'bg-red-500/20 text-red-400'
-                      }`}>
-                        {account.status === 'available' ? 'Mevcut' : 'Satıldı'}
-                      </span>
-                    </div>
-
-                    {/* Discount Badge */}
-                    {account.isOnSale && account.discountPercentage > 0 && (
-                      <div className="absolute top-1 left-1">
-                        <span className="px-1.5 py-0.5 bg-red-500 text-white text-xs rounded-full font-medium">
-                          %{account.discountPercentage} İndirim
-                        </span>
-                      </div>
                     )}
                   </div>
 
@@ -509,28 +532,52 @@ export default function Home() {
                   </div>
 
                   {/* Action Buttons - Fixed at Bottom */}
-                  <div className="flex space-x-1 mt-auto">
+                  <div className="flex space-x-2 mt-auto">
+                    {account.isOnSale && account.discountPercentage > 0 ? (
+                      <button
+                        onClick={() => handleAddToCart(account)}
+                        disabled={account.status !== 'available' || account.stock === 0}
+                        className="flex-1 flex items-center justify-center px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        title={account.stock === 0 ? 'Stokta Yok' : 'Sepete Ekle'}
+                      >
+                        <ShoppingCartIcon className="h-3 w-3 lg:h-4 lg:w-4 mr-2" />
+                        <span className="text-xs lg:text-sm">Sepete Ekle</span>
+                      </button>
+                    ) : account.isFeatured ? (
+                      <button
+                        onClick={() => handleAddToCart(account)}
+                        disabled={account.status !== 'available' || account.stock === 0}
+                        className="flex-1 flex items-center justify-center px-3 py-2 bg-yellow-500 text-black rounded-lg hover:bg-yellow-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        title={account.stock === 0 ? 'Stokta Yok' : 'Sepete Ekle'}
+                      >
+                        <ShoppingCartIcon className="h-3 w-3 lg:h-4 lg:w-4 mr-2" />
+                        <span className="text-xs lg:text-sm">Sepete Ekle</span>
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => handleAddToCart(account)}
+                        disabled={account.status !== 'available' || account.stock === 0}
+                        className="flex-1 flex items-center justify-center px-3 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        title={account.stock === 0 ? 'Stokta Yok' : 'Sepete Ekle'}
+                      >
+                        <ShoppingCartIcon className="h-3 w-3 lg:h-4 lg:w-4 mr-2" />
+                        <span className="text-xs lg:text-sm">Sepete Ekle</span>
+                      </button>
+                    )}
                     <Link 
                       href={`/products/${account._id}`}
-                      className="flex-1 bg-gray-700 text-white py-1.5 rounded-lg hover:bg-gray-600 transition-colors font-medium text-xs text-center"
+                      className="flex items-center justify-center px-3 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors"
+                      title="Detayları Gör"
                     >
-                      Detay
+                      <EyeIcon className="h-4 w-4" />
                     </Link>
-                    <button
-                      onClick={() => handleAddToCart(account)}
-                      disabled={account.status !== 'available' || account.stock === 0}
-                      className="flex items-center justify-center px-2 py-1.5 bg-yellow-500 text-black rounded-lg hover:bg-yellow-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                      title={account.stock === 0 ? "Stokta Yok" : "Sepete Ekle"}
-                    >
-                      <ShoppingCartIcon className="h-3 w-3" />
-                    </button>
                   </div>
                 </div>
               ))}
             </div>
 
             {/* View All Button */}
-            <div className="text-center mt-4">
+            <div className="text-center mt-10">
               <Link 
                 href="/products?featured=true"
                 className="inline-flex items-center px-8 py-3 bg-yellow-500 text-black rounded-lg hover:bg-yellow-600 transition-colors font-semibold"
@@ -542,8 +589,6 @@ export default function Home() {
           </div>
         </section>
       )}
-
-
 
       {/* All Products Section */}
       {allAccounts.length > 0 && (
@@ -560,10 +605,39 @@ export default function Home() {
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
               {allAccounts.slice(0, 8).map((account) => (
-                <div 
-                  key={account._id} 
-                  className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg p-3 lg:p-4 border border-orange-500/20 hover:border-orange-500/40 transition-all duration-300 hover:scale-105 group h-[420px] flex flex-col"
+                <div
+                  key={account._id}
+                  className={
+                    `rounded-lg p-3 lg:p-4 transition-all duration-300 hover:scale-105 group h-[420px] flex flex-col relative ` +
+                    (account.isWeeklyDeal
+                      ? 'bg-gradient-to-br from-orange-500 to-yellow-400 border-2 border-orange-500 shadow-lg animate-pulse'
+                      : 'bg-gradient-to-br from-gray-800 to-gray-900 border border-orange-500/20 hover:border-orange-500/40')
+                  }
                 >
+                  {/* Tüm rozetler ve mevcut etiketi tek satırda */}
+                  <div className="absolute top-2 left-2 z-20 flex flex-row gap-1 flex-wrap">
+                    {account.isOnSale && account.discountPercentage > 0 && (
+                      <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                        %{account.discountPercentage} İNDİRİM
+                      </span>
+                    )}
+                    {account.isFeatured && (
+                      <span className="bg-yellow-400 text-black text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1 shadow-md">
+                        <span className="text-sm">★</span> ÖNE ÇIKAN
+                      </span>
+                    )}
+                    {account.isWeeklyDeal && (
+                      <span className="bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1 shadow-md animate-pulse">
+                        <span className="text-sm">🔥</span> Haftanın Fırsatı
+                      </span>
+                    )}
+                    {account.status === 'available' && (
+                      <span className="bg-green-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">
+                        Mevcut
+                      </span>
+                    )}
+                  </div>
+
                   {/* Product Image - Fixed Height */}
                   <div className="bg-gray-700 rounded-lg h-32 lg:h-40 flex items-center justify-center mb-3 relative overflow-hidden flex-shrink-0">
                     {account.images && account.images.length > 0 ? (
@@ -574,26 +648,6 @@ export default function Home() {
                       />
                     ) : (
                       <span className="text-3xl lg:text-4xl">{account.emoji || '🎮'}</span>
-                    )}
-                    
-                    {/* Status Badge */}
-                    <div className="absolute top-2 right-2">
-                      <span className={`px-2 py-1 text-xs rounded-full font-medium ${
-                        account.status === 'available' 
-                          ? 'bg-green-500/20 text-green-400' 
-                          : 'bg-red-500/20 text-red-400'
-                      }`}>
-                        {account.status === 'available' ? 'Mevcut' : 'Satıldı'}
-                      </span>
-                    </div>
-
-                    {/* Discount Badge */}
-                    {account.isOnSale && account.discountPercentage > 0 && (
-                      <div className="absolute top-2 left-2">
-                        <span className="px-2 py-1 bg-orange-500 text-white text-xs rounded-full font-medium">
-                          %{account.discountPercentage} İndirim
-                        </span>
-                      </div>
                     )}
                   </div>
 
@@ -656,27 +710,29 @@ export default function Home() {
 
                   {/* Action Buttons - Fixed at Bottom */}
                   <div className="flex space-x-2 mt-auto">
-                    <Link 
-                      href={`/products/${account._id}`}
-                      className="flex-1 bg-gray-700 text-white py-2 rounded-lg hover:bg-gray-600 transition-colors font-medium text-xs lg:text-sm text-center"
-                    >
-                      Detay
-                    </Link>
                     <button
                       onClick={() => handleAddToCart(account)}
                       disabled={account.status !== 'available' || account.stock === 0}
-                      className="flex items-center justify-center px-3 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                      title={account.stock === 0 ? "Stokta Yok" : "Sepete Ekle"}
+                      className="flex-1 flex items-center justify-center px-3 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      title={account.stock === 0 ? 'Stokta Yok' : 'Sepete Ekle'}
                     >
-                      <ShoppingCartIcon className="h-3 w-3 lg:h-4 lg:w-4" />
+                      <ShoppingCartIcon className="h-3 w-3 lg:h-4 lg:w-4 mr-2" />
+                      <span className="text-xs lg:text-sm">Sepete Ekle</span>
                     </button>
+                    <Link 
+                      href={`/products/${account._id}`}
+                      className="flex items-center justify-center px-3 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors"
+                      title="Detayları Gör"
+                    >
+                      <EyeIcon className="h-4 w-4" />
+                    </Link>
                   </div>
                 </div>
               ))}
             </div>
 
             {/* View All Button */}
-            <div className="text-center mt-4">
+            <div className="text-center mt-10">
               <Link 
                 href="/products"
                 className="inline-flex items-center px-8 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors font-semibold"

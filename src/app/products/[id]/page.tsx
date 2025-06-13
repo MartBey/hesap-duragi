@@ -264,25 +264,19 @@ export default function ProductDetailPage() {
 
             {/* Reviews Section */}
             <div className="bg-gray-800/50 rounded-lg p-6 border border-gray-700 mt-6">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-xl font-bold text-white">Değerlendirmeler</h3>
-                <div className="flex items-center space-x-2">
-                  <div className="flex items-center">
-                    {[...Array(5)].map((_, i) => (
-                      <StarIconSolid 
-                        key={i} 
-                        className={`h-4 w-4 ${
-                          i < Math.floor(averageRating) 
-                            ? 'text-yellow-400' 
-                            : 'text-gray-600'
-                        }`} 
-                      />
-                    ))}
-                  </div>
-                  <span className="text-gray-400 text-sm">
-                    {averageRating.toFixed(1)}/5 ({reviewCount} değerlendirme)
-                  </span>
+              <h3 className="text-xl font-bold text-white mb-1 text-left">Değerlendirmeler</h3>
+              <div className="flex items-center space-x-2 mb-4">
+                <div className="flex items-center">
+                  {[...Array(5)].map((_, i) => (
+                    <StarIconSolid
+                      key={i}
+                      className={`h-4 w-4 ${i < Math.floor(averageRating) ? 'text-yellow-400' : 'text-gray-600'}`}
+                    />
+                  ))}
                 </div>
+                <span className="text-gray-400 text-sm">
+                  {averageRating.toFixed(1)}/5 ({reviewCount} değerlendirme)
+                </span>
               </div>
 
               {reviewsLoading ? (
@@ -293,23 +287,19 @@ export default function ProductDetailPage() {
                 <div className="space-y-4">
                   {reviews.map((review) => (
                     <div key={review._id} className="bg-gray-700/50 rounded-lg p-4 border border-gray-600">
-                      <div className="flex items-start justify-between mb-3">
-                        <div className="flex items-center space-x-3">
-                          <div className="bg-gray-600 rounded-full p-2">
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3 gap-2">
+                        <div className="flex items-center gap-2 min-w-0">
+                          <div className="bg-gray-600 rounded-full p-2 flex-shrink-0">
                             <UserIcon className="h-4 w-4 text-gray-300" />
                           </div>
-                          <div>
-                            <p className="text-white font-medium">{review.userName}</p>
-                            <div className="flex items-center space-x-2">
+                          <div className="min-w-0">
+                            <p className="text-white font-medium text-sm truncate max-w-[120px] sm:max-w-xs">{review.userName}</p>
+                            <div className="flex items-center gap-1 flex-wrap">
                               <div className="flex items-center">
                                 {[...Array(5)].map((_, i) => (
                                   <StarIconSolid 
                                     key={i} 
-                                    className={`h-3 w-3 ${
-                                      i < review.rating 
-                                        ? 'text-yellow-400' 
-                                        : 'text-gray-600'
-                                    }`} 
+                                    className={`h-3 w-3 ${i < review.rating ? 'text-yellow-400' : 'text-gray-600'}`} 
                                   />
                                 ))}
                               </div>
@@ -320,11 +310,10 @@ export default function ProductDetailPage() {
                           </div>
                         </div>
                       </div>
-                      
                       {review.comment && (
-                        <div className="flex items-start space-x-2 mt-3">
+                        <div className="flex items-start gap-2 mt-3 break-words">
                           <ChatBubbleLeftIcon className="h-4 w-4 text-gray-400 mt-0.5 flex-shrink-0" />
-                          <p className="text-gray-300 text-sm leading-relaxed">{review.comment}</p>
+                          <p className="text-gray-300 text-sm leading-relaxed break-words">{review.comment}</p>
                         </div>
                       )}
                     </div>
