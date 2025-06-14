@@ -4,6 +4,7 @@ import "./globals.css";
 import { CartProvider } from "@/contexts/CartContext";
 import Providers from "@/components/Providers";
 import Script from 'next/script'
+import { Toaster } from 'react-hot-toast';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -76,6 +77,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
+        <Toaster position="top-center" />
         <Providers>
           <CartProvider>
             {children}

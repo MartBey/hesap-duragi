@@ -109,6 +109,14 @@ export default function RegisterPage() {
         throw new Error(data.error || 'Kayıt işlemi başarısız');
       }
 
+      // Otomatik giriş: token ve user bilgisini kaydet
+      if (data.token && data.user) {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        router.push('/');
+        return;
+      }
+
       setSuccess('Hesabınız başarıyla oluşturuldu! Giriş sayfasına yönlendiriliyorsunuz...');
       
       // 2 saniye sonra login sayfasına yönlendir

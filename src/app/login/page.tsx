@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
+import toast from 'react-hot-toast';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -73,7 +74,7 @@ export default function LoginPage() {
       }
 
       // Başarı mesajı göster
-      alert('Giriş başarılı! Ana sayfaya yönlendiriliyorsunuz...');
+      toast.success('Giriş başarılı! Ana sayfaya yönlendiriliyorsunuz...');
 
       // Ana sayfaya yönlendir
       setTimeout(() => {
@@ -203,7 +204,7 @@ export default function LoginPage() {
               </div>
 
               <div className="text-sm">
-                <Link href="/forgot-password" className="text-orange-500 hover:text-orange-400 transition-colors">
+                <Link href="/auth/forgot-password" className="text-orange-500 hover:text-orange-400 transition-colors">
                   Şifremi unuttum
                 </Link>
               </div>
